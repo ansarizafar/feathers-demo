@@ -17,7 +17,7 @@ const customerSchema = new Schema({
   phone: { type: String, required: true },
   email: { type: String, required: true },
   isTax: { type: Boolean, default: true },
-  user: { type: Schema.Types.ObjectId, ref: 'area', required: true },
+  user: { type: Schema.Types.ObjectId, ref: 'user', required: true },
   createdAt: { type: Date, 'default': Date.now },
   updatedAt: { type: Date, 'default': Date.now }
 });
