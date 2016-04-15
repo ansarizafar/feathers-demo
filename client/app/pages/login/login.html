@@ -1,0 +1,28 @@
+<ion-navbar *navbar>
+  <ion-title>
+    Home
+  </ion-title>
+</ion-navbar>
+
+<ion-content class="home">
+  <ion-card>
+    <ion-card-header>The Login Form: {{user?.username}}</ion-card-header>
+    <pre>{{err |json}}</pre>
+    <form [ngFormModel]="mainForm" (submit)="onSubmit(mainForm.value)">
+      <ion-list>
+        <ion-input>
+          <ion-label>User Name</ion-label>
+          <input type="text" class="form-control" id="username"  [ngFormControl]="mainForm.controls['username']">
+        </ion-input>
+        <ion-input>
+          <ion-label>Password</ion-label>
+          <input type="password" class="form-control" id="password"  [ngFormControl]="mainForm.controls['password']">
+        </ion-input>
+        <ion-input style="padding:15px">
+          <button type="submit" class="button">Login</button>
+          <button  class="button" (click)="onCreateAccount()">Create Account</button>
+        </ion-input>
+      </ion-list>
+    </form>
+  </ion-card>
+</ion-content>

@@ -1,0 +1,12 @@
+{
+  "host": "localhost",
+  "port": 3030,
+  "mongodb": "mongodb://zafaransari:billgates3@ds021650.mlab.com:21650/officedata",
+  "public": "../public/",
+  "auth": {
+    "token": {
+      "secret": "2r65sMNTWnNmDb1TzBrHAtT4n7RlBw2srPVKDOPo33Oo/TYZZAAThYj/n3rnWsLRXw3mNbmOGhnCuVWO+94BVA=="
+    },
+    "local": {}
+  }
+}
