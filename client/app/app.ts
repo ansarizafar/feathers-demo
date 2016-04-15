@@ -16,18 +16,21 @@ class MyApp {
   // make HelloIonicPage the root (or first) page
   rootPage: any = LoginPage;
   pages: Array<{title: string, component: any}>;
-
+  private _auth;
   constructor(
     private app: IonicApp,
     private platform: Platform,
-    private menu: MenuController
+    private menu: MenuController,
+    private _restService: RestService
   ) {
     this.initializeApp();
+    this._auth = _restService.auth();
 
     // set our app's pages
     this.pages = [
       { title: 'Subscriptions', component: HelloIonicPage },
-      { title: 'Products', component: ListPage }
+      { title: 'Products', component: ListPage },
+      { title: 'Log out', component: ''}
     ];
   }
 
@@ -44,6 +47,16 @@ class MyApp {
     this.menu.close();
     // navigate to the new page if it is not the current page
     let nav = this.app.getComponent('nav');
+    if(page.title == 'Log out') {
+   nav.setRoot(LoginPage);
+  /* this._auth.logout(). then(function(result){
+    nav.setRoot(LoginPage); 
+   }).catch(function(err){
+     
+   });
+   */   
+    } else {
     nav.setRoot(page.component);
+    }
   }
 }

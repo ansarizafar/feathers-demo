@@ -25,4 +25,8 @@ export class RestService {
   return this._app.service(service);
 }
 
+auth() {
+  return this._app;
+}
+
 }
