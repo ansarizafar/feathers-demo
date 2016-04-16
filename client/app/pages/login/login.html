@@ -18,7 +18,11 @@
       <control-messages control="password"></control-messages>
     <div padding>
       <button primary block [disabled]="!loginForm.valid">Sign In</button>
-    </div>
-
+      </div>
         </form>
+        <div style="text-align: center;">
+  <div>OR</div>
+  <button round (click)="signup()">Create a Free Account</button>
+  </div>
+
 </ion-content>
