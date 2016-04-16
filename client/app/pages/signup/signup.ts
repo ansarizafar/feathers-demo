@@ -7,30 +7,47 @@ import {ValidationService} from '../../services/validationservice';
 
 @Page({
   templateUrl: 'build/pages/signup/signup.html',
-   directives: [FORM_DIRECTIVES, ControlMessages]
+  directives: [FORM_DIRECTIVES, ControlMessages]
 })
 export class SignupPage {
-   private _auth;
+  private _auth;
+  private _areaService;
+  private _areas;
   signupForm: ControlGroup;
   constructor(private _fb: FormBuilder, public nav: NavController, private _restService: RestService) {
-   this.signupForm = _fb.group({
-      companyName: ["",  Validators.compose([Validators.required, Validators.maxLength(40)])],
-      city: ["Karachi",  Validators.required],
-      area: ["",  Validators.required],
-      address: ["",  Validators.compose([Validators.required, Validators.maxLength(50)])],
-      phone: ["",  Validators.compose([Validators.required, Validators.maxLength(10)])],
-      email: ["",  Validators.compose([Validators.required, ValidationService.emailValidator])],
-      userName: ["",  Validators.compose([Validators.required, Validators.maxLength(25)])],
-      loginName: ["",  Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(10), ValidationService.loginNameValidator])],
+    this._areaService = _restService.getService('areas');
+
+    this.signupForm = _fb.group({
+      companyName: ["", Validators.compose([Validators.required, Validators.maxLength(40)])],
+      city: ["Karachi", Validators.required],
+      areaName: ["", Validators.required],
+      address: ["", Validators.compose([Validators.required, Validators.maxLength(50)])],
+      phone: ["", Validators.compose([Validators.required, Validators.maxLength(10)])],
+      email: ["", Validators.compose([Validators.required, ValidationService.emailValidator])],
+      userName: ["", Validators.compose([Validators.required, Validators.maxLength(25)])],
+      loginName: ["", Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(10), ValidationService.loginNameValidator])],
       password: ["", Validators.compose([Validators.required, ValidationService.passwordValidator])]
     });
 
     this.nav = nav;
     this._auth = _restService.auth();
   }
+
+  ngOnInit() {
   
-    signup(value: string): void {
-      let alert = Alert.create({
+    this._areaService.find({ query: { city: 'Karachi', $select: ['name'] } })
+      .then(areas => {
+        console.log(areas.data);
+        this._areas = areas.data;
+      });
+     
+  }
+
+
+
+
+  signup(value: string): void {
+    let alert = Alert.create({
       title: 'Account Created!',
       subTitle: 'Your free account has been created.',
       buttons: ['OK']

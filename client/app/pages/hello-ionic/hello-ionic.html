@@ -21,5 +21,10 @@
   <p>
     <button primary menuToggle>Toggle Menu</button>
   </p>
+  
+   <div class="message" *ngFor="#customer of _customers">
+         <h1 class="title">{{customer.name}}</h1>
+         <div class="description">{{customer.email}}</div>
+      </div>
 
 </ion-content>
