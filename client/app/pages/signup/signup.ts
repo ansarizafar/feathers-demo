@@ -15,7 +15,7 @@ export class SignupPage {
   constructor(private _fb: FormBuilder, public nav: NavController, private _restService: RestService) {
    this.signupForm = _fb.group({
       companyName: ["",  Validators.compose([Validators.required, Validators.maxLength(40)])],
-      city: ["",  Validators.required],
+      city: ["Karachi",  Validators.required],
       area: ["",  Validators.required],
       address: ["",  Validators.compose([Validators.required, Validators.maxLength(50)])],
       phone: ["",  Validators.compose([Validators.required, Validators.maxLength(10)])],
