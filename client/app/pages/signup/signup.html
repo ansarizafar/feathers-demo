@@ -1,4 +1,3 @@
-
 <ion-navbar *navbar>
   <button menuToggle>
     <ion-icon name="menu"></ion-icon>
@@ -7,5 +6,68 @@
 </ion-navbar>
 
 <ion-content padding class="signup">
-  
+  <form [ngFormModel]="signupForm" (submit)="signup(signupForm.value)">
+
+    <ion-item>
+      <ion-label floating>Company name</ion-label>
+      <ion-input type="text" ngControl="companyName"></ion-input>
+    </ion-item>
+    <control-messages control="companyName"></control-messages>
+
+    <ion-item>
+      <ion-label>City</ion-label>
+      <ion-select ngControl="city">
+        <ion-option value="Karachi">Karachi</ion-option>
+        <ion-option value="Hyderabad">Hyderabad</ion-option>
+           </ion-select>
+    </ion-item>
+ <control-messages control="city"></control-messages> 
+
+<ion-item>
+      <ion-label>Area</ion-label>
+      <ion-select ngControl="area">
+        <ion-option value="North Karachi">North Karachi</ion-option>
+        <ion-option value="Gulshan">Gulshan</ion-option>
+           </ion-select>
+    </ion-item>
+ <control-messages control="area"></control-messages> 
+
+    <ion-item>
+      <ion-label floating>Address</ion-label>
+      <ion-input type="text" ngControl="address"></ion-input>
+    </ion-item>
+   <control-messages control="address"></control-messages> 
+
+<ion-item>
+      <ion-label floating>Phone</ion-label>
+      <ion-input type="text" ngControl="phone"></ion-input>
+    </ion-item>
+    <control-messages control="phone"></control-messages>
+<ion-item>
+      <ion-label floating>Email</ion-label>
+      <ion-input type="email" ngControl="email"></ion-input>
+    </ion-item>
+    <control-messages control="email"></control-messages>
+
+<ion-item>
+      <ion-label floating>Authorised Person</ion-label>
+      <ion-input type="text" ngControl="userName"></ion-input>
+    </ion-item>
+    <control-messages control="userName"></control-messages>
+
+<ion-item>
+      <ion-label floating>Login name</ion-label>
+      <ion-input type="text" ngControl="loginName"></ion-input>
+    </ion-item>
+     <control-messages control="loginName"></control-messages>
+
+    <ion-item>
+      <ion-label floating>Password</ion-label>
+      <ion-input type="password" ngControl="password"></ion-input>
+    </ion-item>
+    <control-messages control="password"></control-messages>
+    <div padding>
+      <button primary block [disabled]="!signupForm.valid">Sign Up</button>
+    </div>
+  </form>
 </ion-content>
