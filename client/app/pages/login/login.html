@@ -2,21 +2,22 @@
  <ion-title style="text-align: center"><ion-icon name="cube" item-left></ion-icon> Officeware</ion-title>
  </ion-navbar>
 
+
 <ion-content padding class="login" >
-   <form #loginCreds="ngForm" (ngSubmit)="login(loginCreds.value)">
+   <form [ngFormModel]="loginForm" (submit)="login(loginForm.value)">
     
       <ion-item>
-        <ion-label floating>Username</ion-label>
-        <ion-input type="text" ngControl="username" value=""></ion-input>
+        <ion-label floating>Login name</ion-label>
+        <ion-input type="text"  ngControl="loginName" ></ion-input>
       </ion-item>
-
+      <control-messages control="loginName"></control-messages>
       <ion-item>
         <ion-label floating>Password</ion-label>
-        <ion-input type="password" ngControl="password" value=""></ion-input>
-      </ion-item>
-
+        <ion-input type="password"  ngControl="password" ></ion-input>
+          </ion-item>
+      <control-messages control="password"></control-messages>
     <div padding>
-      <button primary block>Sign In</button>
+      <button primary block [disabled]="!loginForm.valid">Sign In</button>
     </div>
 
         </form>
