@@ -1,4 +1,5 @@
 'use strict';
+const signup = require('./signup');
 const area = require('./area');
 const customer = require('./customer');
 const authentication = require('./authentication');
@@ -14,4 +15,5 @@ module.exports = function() {
   app.configure(user);
   app.configure(customer);
   app.configure(area);
+  app.configure(signup);
 };

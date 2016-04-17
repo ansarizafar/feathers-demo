@@ -13,6 +13,8 @@ export class SignupPage {
   private _auth;
   private _areaService;
   private _areas;
+  private _city;
+  
   signupForm: ControlGroup;
   constructor(private _fb: FormBuilder, public nav: NavController, private _restService: RestService) {
     this._areaService = _restService.getService('areas');
@@ -31,6 +33,13 @@ export class SignupPage {
 
     this.nav = nav;
     this._auth = _restService.auth();
+    this._city = this.signupForm.controls['city'];
+    
+    this._city.valueChanges.subscribe(  
+      (value: string) => {  
+        console.log('City changed to: ', value);  
+      }
+    );
   }
 
   ngOnInit() {
@@ -43,9 +52,6 @@ export class SignupPage {
      
   }
 
-
-
-
   signup(value: string): void {
     let alert = Alert.create({
       title: 'Account Created!',
@@ -54,4 +60,6 @@ export class SignupPage {
     });
     this.nav.present(alert);
   }
+       
+  
 }
