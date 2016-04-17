@@ -17,8 +17,9 @@ const areaSchema = new Schema({
 });
 
 const areaModel = mongoose.model('area', areaSchema);
+
 /*
-areaModel.create({ name: 'North Karachi' }, function (err, result) {
+areaModel.create({ name: 'Defence' }, function (err, result) {
   if (err) console.log(err);
   // saved!
   console.log(result);
