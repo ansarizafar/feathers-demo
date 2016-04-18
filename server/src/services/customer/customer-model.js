@@ -10,14 +10,14 @@ const area = require('../area/area-model');
 const Schema = mongoose.Schema;
 
 const customerSchema = new Schema({
-  name: { type: String, required: true },
+  companyName: { type: String, required: true, maxlength: 40 },
   city: { type: String, required: true, default: 'Karachi' },
   area: { type: Schema.Types.ObjectId, ref: 'area', required: true },
-  address: { type: String, required: true },
-  phone: { type: String, required: true },
-  email: { type: String, required: true },
+  address: { type: String, required: true, maxlength: 70 },
+  phone: { type: String, required: true, maxlength: 10 },
+  email: { type: String, required: true, unique: true },
   isTax: { type: Boolean, default: true },
-  user: { type: Schema.Types.ObjectId, ref: 'user', required: true },
+  user: { type: Schema.Types.ObjectId, ref: 'user' },
   createdAt: { type: Date, 'default': Date.now },
   updatedAt: { type: Date, 'default': Date.now }
 });

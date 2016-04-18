@@ -13,7 +13,7 @@ var passwordMatch = [ /^(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{6,12}$/, 'Invalid passwor
 
 const userSchema = new Schema({
 
-  userName: { type: String, required: true },
+  userName: { type: String, required: true, maxlength: 25 },
   role: { type: String, required: true, default: 'Customer' },
   belongTo: { type: Schema.Types.ObjectId, default: null },
   isActive: { type: Boolean, required: true, default: true },

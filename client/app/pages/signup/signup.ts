@@ -23,7 +23,7 @@ export class SignupPage {
       companyName: ["", Validators.compose([Validators.required, Validators.maxLength(40)])],
       city: ["Karachi", Validators.required],
       areaName: ["", Validators.required],
-      address: ["", Validators.compose([Validators.required, Validators.maxLength(50)])],
+      address: ["", Validators.compose([Validators.required, Validators.maxLength(70)])],
       phone: ["", Validators.compose([Validators.required, Validators.maxLength(10)])],
       email: ["", Validators.compose([Validators.required, ValidationService.emailValidator])],
       userName: ["", Validators.compose([Validators.required, Validators.maxLength(25)])],
