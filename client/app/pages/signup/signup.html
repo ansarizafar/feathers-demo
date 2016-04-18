@@ -26,9 +26,10 @@
 <ion-item>
       <ion-label stacked>Area</ion-label>
       <ion-select ngControl="areaName"  >
-           <option *ngFor="#area of _areas" [ngValue]="area">{{area.name}}</option>
+           <ion-option *ngFor="#area of _areas" [ngValue]="area._id">{{area.name}}</ion-option>
                    </ion-select>
     </ion-item>
+        
  <control-messages control="areaName"></control-messages> 
 
     <ion-item>

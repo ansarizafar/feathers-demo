@@ -12,9 +12,9 @@ import {ValidationService} from '../../services/validationservice';
 export class SignupPage {
   private _auth;
   private _areaService;
-  private _areas;
+  public _areas;
   private _city;
-  
+
   signupForm: ControlGroup;
   constructor(private _fb: FormBuilder, public nav: NavController, private _restService: RestService) {
     this._areaService = _restService.getService('areas');
@@ -34,22 +34,24 @@ export class SignupPage {
     this.nav = nav;
     this._auth = _restService.auth();
     this._city = this.signupForm.controls['city'];
-    
-    this._city.valueChanges.subscribe(  
-      (value: string) => {  
-        console.log('City changed to: ', value);  
+
+    this._city.valueChanges.subscribe(
+      (value: string) => {
+        this._areaService.find({ query: { city: value, $select: ['name'] } })
+          .then(areas => {
+            this._areas = areas.data;
+          });
       }
     );
   }
 
   ngOnInit() {
-  
+
     this._areaService.find({ query: { city: 'Karachi', $select: ['name'] } })
       .then(areas => {
-        console.log(areas.data);
         this._areas = areas.data;
       });
-     
+
   }
 
   signup(value: string): void {
@@ -60,6 +62,6 @@ export class SignupPage {
     });
     this.nav.present(alert);
   }
-       
-  
+
+
 }
