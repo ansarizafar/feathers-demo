@@ -5,19 +5,20 @@ const startup = function (app) {
 
     userModel.count({ role: 'Admin' }).then(function (count) {
         if (count === 0) {
-            app.service('signup').create({
+            app.service('users').create({
                 userName: 'Zafar Ansari',
                 role: 'Admin',
                 loginName: 'zafaransari',
-                password: 'billgates3'
+                password: 'Billgates3'
             }).then(function (user) {
                 console.log('Created user', user);
+            }).catch(function(error){
+                console.log(error);
             });
         }
     });
 
-
-    customerModel.count({ role: 'Customer' }).then(function (count) {
+    customerModel.count().then(function (count) {
         if (count === 0) {
             app.service('signup').create({
                 companyName: 'City School',

@@ -25,7 +25,8 @@ class Service {
     return new Promise(function (resolve, reject) {
 
       if (data.role === 'Customer') {
-        let customer = new customerModel({
+
+        customerModel.create({
           companyName: data.companyName,
           city: data.city,
           area: data.areaName,
@@ -33,40 +34,30 @@ class Service {
           phone: data.phone,
           email: data.email,
           user: null
-        });
+        }).then(function (newCustomer) { //Customer user success
 
-        customer.save().then(function (newCustomer) { //Customer user success
-          let user = new userModel({
+          userModel.create({
             userName: data.userName,
             role: "Customer",
-            belongTo: customer._id,
+            belongTo: newCustomer._id,
             loginName: data.loginName,
             password: data.password
-
-          });
-          user.save().then(function (newUser) { //Customer user added
+          }).then(function (newUser) { //Customer user added
             newCustomer.user = newUser._id
             customerModel.update({ _id: newCustomer._id }, newCustomer).then(function (upCustomer) { //Customer update success
               console.log(`A user account for ${newCustomer.userName} is created.`);
               resolve(newCustomer);
-            })
-              .catch(function (error) { //Customer update failed
-                reject(error);
-
-              });
-
-          })
-            .catch(function (error) { // Customer user save error
-              // Delete customer
-              customerModel.remove({ _id: newCustomer._id }).then(function () { //Customer remove successful
-                reject('Customer creation failed');
-              })
-                .catch(function (error) { // Customer removal failed
-                  reject(error);
-                });
-
+            }).catch(function (error) { //Customer update failed
+              reject(error);
             });
-
+          }).catch(function (error) { // Customer user save error
+            // Delete customer
+            customerModel.remove({ _id: newCustomer._id }).then(function () { //Customer remove successful
+              reject('Customer creation failed');
+            }).catch(function (error) { // Customer removal failed
+              reject(error);
+            });
+          });
         })
           .catch(function (error) { //customer save error
             reject(error);
@@ -74,29 +65,20 @@ class Service {
           });
 
       } else {  //If not Admin
-        let user = new userModel({
+
+        userModel.create({
           userName: data.userName,
           role: "Admin",
           loginName: data.loginName,
           password: data.password
-        });
-        user.save().then(function (newUser) { //Admin user success
+        }).then(function (newUser) { //Admin user success
           console.log(`A user account for ${newUser.userName} is created.`);
           resolve(newUser);
-        })
-          .catch(function (error) { // Admin user error
-            reject(error);
-            //throw new errors.BadRequest({errors: error});
-          });
+        }).catch(function (error) { // Admin user error
+          reject(error);
+        });
       }
     });
-
-    /*
-        if(Array.isArray(data)) {
-          return Promise.all(data.map(current => this.create(current)));
-        }
-        return Promise.resolve(data);
-        */
 
   }
 

@@ -8,8 +8,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-var loginMatch = [ /^[a-zA-Z0-9]{6,20}$/, 'Invalid login name. Login name must be 6 to 20 characters long, and can contain A-Z, a-z and 0-9.'];
-var passwordMatch = [ /^(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{6,12}$/, 'Invalid password. Password must be 6 to 12 characters long, and contain a number.'];
+var loginMatch = [ /^[a-zA-Z0-9]{6,20}$/, 'Login name must be 6 to 20 characters long, and can contain A-Z, a-z and 0-9.'];
+var passwordMatch = [ /^(?=.*[A-Z])(?=.*[0-9])(?=.{6,15}$)/, 'Password must be 6 to 15 characters long, and contain at least 1 uppercase letter and 1 digit.'];
 
 const userSchema = new Schema({
 
