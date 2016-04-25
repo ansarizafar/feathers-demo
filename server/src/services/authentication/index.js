@@ -9,6 +9,6 @@ module.exports = function() {
   let config = app.get('auth');
   
 
-  
+  console.log(config);
   app.configure(authentication(config));
 };

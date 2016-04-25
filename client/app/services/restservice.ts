@@ -18,7 +18,7 @@ export class RestService {
     .configure(rest(HOST)
     .superagent(superagent))
     .configure(hooks()) // Configure feathers-hooks
-    .configure(authentication({ storage: localStorage }));
+    .configure(authentication({storage: localStorage}));
   }
 
   getService(service: string) {

@@ -29,8 +29,22 @@ export class LoginPage {
   }
 
 
-  login(value: string): void {
+  login(value: any): void {
+console.log(value.loginName);
+console.log(value.password);
+
+    this._auth.authenticate({
+      type: 'local',
+      loginName: value.loginName,
+      password: value.password
+    }).then(function (result) {
     this.nav.setRoot(HelloIonicPage);
+    }).catch(function (error) {
+      console.log(error);
+    //  console.error('Error authenticating!', error);
+    });
+    
+    
   }
 
   signup() {

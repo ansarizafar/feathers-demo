@@ -18,7 +18,7 @@ const userSchema = new Schema({
   belongTo: { type: Schema.Types.ObjectId, default: null },
   isActive: { type: Boolean, required: true, default: true },
 
-  loginName: {type: String, required: true, unique: true, match: loginMatch},
+  loginName: {type: String, required: true, unique: true},
   password: { type: String, required: true },
 
   createdAt: { type: Date, 'default': Date.now },

@@ -20,7 +20,7 @@ const startup = function (app) {
     });
 
     /*customerModel.count().then(function (count) {
-        if (count === 0) { */
+        if (count === 0) { 
             app.service('signup').create({
                 companyName: 'City School',
                 city: 'Karachi',
@@ -31,7 +31,7 @@ const startup = function (app) {
                 userName: 'Jazil Khan',
                 role: 'Customer',
                 loginName: 'jazilkhan',
-                password: 'billgates3'
+                password: 'Billgates3'
             }).then(function (user) {
                 console.log('Created user', user);
             })
@@ -39,7 +39,7 @@ const startup = function (app) {
                     console.log(error);
                 });
 
-      /*  }
+        }
     }); */
 
 }

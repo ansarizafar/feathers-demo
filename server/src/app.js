@@ -32,8 +32,8 @@ app.use(compress())
   .configure(hooks())
   .configure(rest())
   .configure(socketio())
+  .configure(authentication({local: {usernameField: "loginName"}}))
   .configure(services)
-  .configure(authentication({ local: { usernameField: 'loginName' }}))
   .use('/graphql', apolloServer())
   .configure(middleware);
   

@@ -18,7 +18,7 @@ this._customerService = _restService.getService('customers');
       console.log(customer);
    });*/
    
-   this._customerService.find({query: { _id: '570e865e181048f80e87164d', $select: ['name','email','area']}}).then(customers => {
+   this._customerService.find({query: { _id: '571e122fa2842c0513657fc0', $select: ['companyName','email','area']}}).then(customers => {
       this._customers = customers.data;
       console.log(customers.data);
    });
