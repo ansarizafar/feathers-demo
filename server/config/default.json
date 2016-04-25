@@ -7,8 +7,6 @@
     "token": {
       "secret": "2r65sMNTWnNmDb1TzBrHAtT4n7RlBw2srPVKDOPo33Oo/TYZZAAThYj/n3rnWsLRXw3mNbmOGhnCuVWO+94BVA=="
     },
-    "local": {
-      "usernameField": "loginName"
-    }
+    "local": {}
   }
 }

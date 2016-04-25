@@ -1,4 +1,5 @@
 'use strict';
+//if (!global._babelPolyfill) { require('babel-polyfill'); }
 
 const app = require('./app');
 const port = app.get('port');

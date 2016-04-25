@@ -9,7 +9,7 @@ module.exports = function() {
 
   const options = {
     Model: area,
-    lean: true,
+    lean: false,
     paginate: {
       default: 5,
       max: 25

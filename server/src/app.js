@@ -11,10 +11,12 @@ const hooks = require('feathers-hooks');
 const rest = require('feathers-rest');
 const bodyParser = require('body-parser');
 const socketio = require('feathers-socketio');
+const authentication = require('feathers-authentication');
 
 const middleware = require('./middleware');
 const services = require('./services');
 const startup = require('./startup');
+const apolloServer = require('./data/apolloserver');
 
 const app = feathers();
 
@@ -31,8 +33,10 @@ app.use(compress())
   .configure(rest())
   .configure(socketio())
   .configure(services)
+  .configure(authentication({ local: { usernameField: 'loginName' }}))
+  .use('/graphql', apolloServer())
   .configure(middleware);
-
-  startup(app);
+  
+startup(app);
 
 module.exports = app;

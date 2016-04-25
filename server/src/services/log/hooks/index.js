@@ -1,19 +1,12 @@
 'use strict';
 
-const queryp = require('./queryp');
-
 const globalHooks = require('../../../hooks');
 const hooks = require('feathers-hooks');
-const auth = require('feathers-authentication').hooks;
 
 
 exports.before = {
-  all: [
-    auth.verifyToken(),
-    auth.populateUser(),
-    auth.restrictToAuthenticated()
-  ],
-  find: [queryp()],
+  all: [],
+  find: [],
   get: [],
   create: [],
   update: [],
@@ -22,7 +15,7 @@ exports.before = {
 };
 
 exports.after = {
-  all: [hooks.remove('createdAt', 'updatedAt')],
+  all: [],
   find: [],
   get: [],
   create: [],

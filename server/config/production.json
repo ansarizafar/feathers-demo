@@ -7,8 +7,6 @@
     "token": {
       "secret": "FEATHERS_AUTH_SECRET"
     },
-    "local": {
-       "usernameField": "loginName"
-    }
+    "local": {}
   }
 }

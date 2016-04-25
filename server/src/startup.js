@@ -3,6 +3,7 @@ const customerModel = require('./services/customer/customer-model');
 
 const startup = function (app) {
 
+
     userModel.count({ role: 'Admin' }).then(function (count) {
         if (count === 0) {
             app.service('users').create({
@@ -18,8 +19,8 @@ const startup = function (app) {
         }
     });
 
-    customerModel.count().then(function (count) {
-        if (count === 0) {
+    /*customerModel.count().then(function (count) {
+        if (count === 0) { */
             app.service('signup').create({
                 companyName: 'City School',
                 city: 'Karachi',
@@ -38,8 +39,8 @@ const startup = function (app) {
                     console.log(error);
                 });
 
-        }
-    });
+      /*  }
+    }); */
 
 }
 

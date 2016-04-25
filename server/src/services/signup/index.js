@@ -10,6 +10,10 @@ class Service {
     this.options = options || {};
   }
 
+  setup(app) {
+    this.app = app;
+  }
+
   find(params) {
     return Promise.resolve([]);
   }
@@ -20,13 +24,38 @@ class Service {
     });
   }
 
-  create(data, params) {
+   async create(data, params) {
 
-    return new Promise(function (resolve, reject) {
+    try {
+      const newCustomer = await this.app.service('customers').create({
+        companyName: data.companyName,
+        city: data.city,
+        area: data.areaName,
+        address: data.address,
+        phone: data.phone,
+        email: data.email,
+        user: null
+      });
 
-      if (data.role === 'Customer') {
+      const newUser = await this.app.service('users').create({
+        userName: data.userName,
+        role: "Customer",
+        belongTo: newCustomer._id,
+        loginName: data.loginName,
+        password: data.password
+      });
 
-        customerModel.create({
+      newCustomer.user = newUser._id;
+      await this.app.service('customers').update(newCustomer._id, newCustomer);
+
+    } catch (err) {
+      await this.app.service('logs').create({message: err.message});
+      throw new errors.BadRequest('Unable to create customer');
+    }
+
+
+
+    /*    customerModel.create({
           companyName: data.companyName,
           city: data.city,
           area: data.areaName,
@@ -35,7 +64,7 @@ class Service {
           email: data.email,
           user: null
         }).then(function (newCustomer) { //Customer user success
-
+  
           userModel.create({
             userName: data.userName,
             role: "Customer",
@@ -63,23 +92,7 @@ class Service {
             reject(error);
             //throw new errors.BadRequest({errors: error});
           });
-
-      } else {  //If not Admin
-
-        userModel.create({
-          userName: data.userName,
-          role: "Admin",
-          loginName: data.loginName,
-          password: data.password
-        }).then(function (newUser) { //Admin user success
-          console.log(`A user account for ${newUser.userName} is created.`);
-          resolve(newUser);
-        }).catch(function (error) { // Admin user error
-          reject(error);
-        });
-      }
-    });
-
+  */
   }
 
   update(id, data, params) {
@@ -96,6 +109,7 @@ class Service {
 
 
 }
+
 
 module.exports = function () {
   const app = this;

@@ -18,7 +18,12 @@ exports.before = {
     auth.restrictToOwner({ ownerField: '_id' })
   ],
   create: [
-  // auth.hashPassword()
+    auth.hashPassword(),
+    auth.restrictToRoles({
+      roles: ['Admin'],
+      fieldName: 'role'
+      //  ownerField: 'sentBy',
+    })
   ],
   update: [
     auth.verifyToken(),
@@ -36,7 +41,12 @@ exports.before = {
     auth.verifyToken(),
     auth.populateUser(),
     auth.restrictToAuthenticated(),
-    auth.restrictToOwner({ ownerField: '_id' })
+    //auth.restrictToOwner({ ownerField: '_id' })
+    auth.restrictToRoles({
+      roles: ['Admin'],
+      fieldName: 'role'
+      //  ownerField: 'sentBy',
+    })
   ]
 };
 
