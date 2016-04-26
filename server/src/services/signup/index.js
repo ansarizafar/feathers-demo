@@ -24,17 +24,16 @@ class Service {
     });
   }
 
-   async create(data, params) {
-
+  async create(data, params) {
     try {
       const newCustomer = await this.app.service('customers').create({
         companyName: data.companyName,
         city: data.city,
-        area: data.areaName,
+        areaId: data.areaId,
         address: data.address,
         phone: data.phone,
         email: data.email,
-        user: null
+        userId: null
       });
 
       const newUser = await this.app.service('users').create({
@@ -45,11 +44,11 @@ class Service {
         password: data.password
       });
 
-      newCustomer.user = newUser._id;
+      newCustomer.userId = newUser._id;
       await this.app.service('customers').update(newCustomer._id, newCustomer);
-
+      return newCustomer;
     } catch (err) {
-      await this.app.service('logs').create({message: err.message});
+      await this.app.service('logs').create({ message: err.message });
       throw new errors.BadRequest('Unable to create customer');
     }
 

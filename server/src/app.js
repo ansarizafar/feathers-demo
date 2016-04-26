@@ -16,7 +16,7 @@ const authentication = require('feathers-authentication');
 const middleware = require('./middleware');
 const services = require('./services');
 const startup = require('./startup');
-const apolloServer = require('./data/apolloserver');
+//const apolloServer = require('./data/apolloserver');
 
 const app = feathers();
 
@@ -34,7 +34,7 @@ app.use(compress())
   .configure(socketio())
   .configure(authentication({local: {usernameField: "loginName"}}))
   .configure(services)
-  .use('/graphql', apolloServer())
+  //.use('/graphql', apolloServer())
   .configure(middleware);
   
 startup(app);

@@ -24,11 +24,11 @@ const startup = function (app) {
             app.service('signup').create({
                 companyName: 'City School',
                 city: 'Karachi',
-                areaName: '570cb2f770c5cecf14bf6f46',
+                areaId: '570cb2f770c5cecf14bf6f46',
                 address: 'Unit no 10',
                 phone: '4535345',
                 email: 'abc@abc.com',
-                userName: 'Jazil Khan',
+                userId: 'Jazil Khan',
                 role: 'Customer',
                 loginName: 'jazilkhan',
                 password: 'Billgates3'
