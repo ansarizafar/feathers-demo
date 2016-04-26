@@ -14,7 +14,7 @@ import {ValidationService} from '../../services/validationservice';
 })
 export class LoginPage {
   private _auth;
-  loginForm: ControlGroup;
+  private loginForm: ControlGroup;
 
   constructor(private _fb: FormBuilder, public nav: NavController, private _restService: RestService) {
 

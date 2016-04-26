@@ -25,12 +25,12 @@
 
 <ion-item>
       <ion-label stacked>Area</ion-label>
-      <ion-select ngControl="areaName"  >
-           <ion-option *ngFor="#area of _areas" [ngValue]="area._id">{{area.name}}</ion-option>
+      <ion-select ngControl="areaId"  >
+           <ion-option *ngFor="#area of _areas" [value]="area._id">{{area.name}}</ion-option>
                    </ion-select>
     </ion-item>
         
- <control-messages control="areaName"></control-messages> 
+ <control-messages control="areaId"></control-messages> 
 
     <ion-item>
       <ion-label stacked>Address</ion-label>
@@ -67,7 +67,7 @@
     </ion-item>
     <control-messages control="password"></control-messages>
     <div padding>
-      <button primary block [disabled]="!signupForm.valid">Sign Up</button>
+      <button type="submit" primary block [disabled]="!signupForm.valid">Sign Up</button>
     </div>
   </form>
 </ion-content>
