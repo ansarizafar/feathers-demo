@@ -45,16 +45,34 @@ export class SignupPage {
           .then(areas => {
             loading.dismiss();
             this._areas = areas.data;
+          }).catch(error => {
+            loading.dismiss();
+            let toast = Toast.create({
+              message: 'Unable to load area list.',
+              duration: 6000
+            });
+            this.nav.present(toast);
           });
       }
     );
   }
 
   ngOnInit() {
-
+    let loading = Loading.create({
+      content: 'Loading...'
+    });
+    this.nav.present(loading);
     this._areaService.find({ query: { city: 'Karachi', $select: ['name'] } })
       .then(areas => {
         this._areas = areas.data;
+        loading.dismiss();
+      }).catch(error => {
+        loading.dismiss();
+        let toast = Toast.create({
+          message: 'Unable to load area list.',
+          duration: 6000
+        });
+        this.nav.present(toast);
       });
 
   }
